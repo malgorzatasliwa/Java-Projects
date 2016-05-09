@@ -3,4 +3,4 @@ First few projects.
 
 FanFictionPrompter generates random prompts for fanfiction writers.
 
-Java-Projects/FanFictionPrompter.png
+
