@@ -10,9 +10,10 @@ import java.awt.event.KeyEvent;
  * movements, changes their coordinates.
  */
 public class PingPongGameEngine implements Runnable, MouseMotionListener,
-		KeyListener, GameConstants {
+		KeyListener, GameConstants { // tutaj, po refaktorze GameConstants, na szczescie bedzie mozna wywalic implementację tego interfejsu ;)
 
 	private PingPongBlueTable table; 
+	// nie uzywaj camelcase, jesli nie sa constami. playerRacketY wystarczy
 	private int playerRacket_Y = PLAYER_RACKET_Y_START;
 	private int computerRacket_Y = COMPUTER_RACKET_Y_START;
 	private int playerScore;
@@ -24,12 +25,12 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 
 	// Value in pixels of the vertical ball movement
 	private int verticalSlide;
-	Thread worker;
+	Thread worker; // czemu ten worker nie jest prywatny?
 
 	// Constructor. Stores a reference to the table
 	public PingPongGameEngine(PingPongBlueTable blueTable) {
 		table = blueTable;
-		worker = new Thread(this);
+		worker = new Thread(this); // fajno byloby, zeby te watki byly zarzadzne przez ThreadExecutor. I w innej klasie, zeby oddzielic funkcjonalnosci.
 		worker.start(); // after start() program goes to run()
 						
 	}
@@ -38,6 +39,7 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 	// interface (some of them are empty, but must be
 	// included in the class anyway)
 
+	// jesli masz metody ovverride, uzywaj @Override, komentarz bezdie zbedny
 	public void mouseDragged(MouseEvent e) { // override
 	}
 
@@ -58,7 +60,8 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 		table.setPlayerRacket_Y(playerRacket_Y);
 	}
 
-	// Methods required by KeyListener interface
+	// Methods required by KeyListener interface //w ogole tego typu komentarze sa zbedne. Implementujac KeyListener, IDE z automatu doda @Override, a potem jednym klikiem
+	// mozna sie dowiedziec, ze to jest wymagane ;)
 	public void keyPressed(KeyEvent e) {
 		char key = e.getKeyChar();
 
@@ -78,7 +81,7 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 	public void keyTyped(KeyEvent e) { //override
 	}
 
-	// Start a new Game
+	// Start a new Game // tutaj komentarz zbedny, nazwa mowi sama za siebie ;)
 	public void startNewGame() {
 		computerScore = 0;
 		playerScore = 0;
@@ -86,12 +89,14 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 		playerServe();
 	}
 
-	// End the game
+	// End the game // jak wyzej
+	// BTW, warto wczesniej pozamykac okienka swingowe (dispose()) itp itd
 	public void endGame() {
 		System.exit(0);
 	}
 
-	// Method run() is required by Runnable interface
+	// Method run() is required by Runnable interface // komentarz zbedny, ale to juz sama sobie wykminisz ktore sa zbedne. Im mniej komentarzy, tym lepiej ;)
+	// Ta metoda jest stanowczo za dluga. Ekstrakt logiki to metod pomocniczych konieczny.
 	public void run() { //override
 
 		boolean canBounce = false;
@@ -126,7 +131,7 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 				if (!movingLeft && ballX <= BALL_MAX_X) {
 					canBounce = (ballY >= playerRacket_Y
 							&& ballY < (playerRacket_Y + RACKET_LENGTH) ? true
-							: false);
+							: false); // tego typu operacje logiczne tez warto wyekstraktowac do metody z jakas sensowna nazwa, co by nie trzeba bylo rozkminiac o co kaman
 
 					ballX += BALL_INCREMENT;
 					table.setBallPosition(ballX, ballY);
@@ -153,7 +158,7 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 				// Step 4. Sleep a little
 				try {
 					System.out.println("Sleeping for " + SLEEP_TIME);
-					Thread.sleep(SLEEP_TIME);
+					Thread.sleep(SLEEP_TIME); // btw, od pewnego czasu jest tez nowy zapis do "spania" --> TimeUnit.SECONDS.sleep(y). Bardziej czytelny
 					System.out.println("Woke up");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -176,7 +181,7 @@ public class PingPongGameEngine implements Runnable, MouseMotionListener,
 						table.setMessageText( "Out! Serve Again");
 								
 					}
-			} // End if ballServed
+			} // End if ballServed // dzieki temu, ze IDE podpowiada scope, nie potrzeba tego typu komentów
 		} // End while
 	}// End run()
 

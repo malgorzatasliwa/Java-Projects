@@ -23,6 +23,7 @@ public class PingPongBlueTable extends JPanel implements GameConstants {
 	private int ballX = BALL_START_X;
 	private int ballY = BALL_START_Y;
 
+	// czemu nie private?
 	Dimension preferredSize = new Dimension(TABLE_WIDTH, TABLE_HEIGHT);
 
 	// This method sets the size of the frame.
@@ -33,7 +34,7 @@ public class PingPongBlueTable extends JPanel implements GameConstants {
 
 	// Constructor. Creates a listener for mouse events
 	PingPongBlueTable() {
-
+		// pamietaj o finalach
 		PingPongGameEngine gameEngine = new PingPongGameEngine(this);
 		// Listen to mouse movements to move the rackets
 		addMouseMotionListener(gameEngine);
@@ -49,6 +50,7 @@ public class PingPongBlueTable extends JPanel implements GameConstants {
 		container.add(label);
 	}
 
+	// to jest na pewno w documentacji jdk ;) A jesli chcesz tego typu koment, to lepiej chyba javadoc, czylo /** tekst */
 	// repaint the window. This method is called by JVM
 	// when it needs to refresh the screen or when a
 	// method repaint() is called from PingPointGameEngine
@@ -126,8 +128,8 @@ public class PingPongBlueTable extends JPanel implements GameConstants {
 	}
 	public static void main(String[] args) {
 
-		// Create an instance of the frame
-		JFrame f = new JFrame("Ping Pong Blue Table");
+		// Create an instance of the frame // wiem, powtarzam sie ;) Ale ten koment jest zbedny. Natomiast nigdy nie nazywaj zmiennych jak ponizej.
+		JFrame f = new JFrame("Ping Pong Blue Table"); // bo za kilkadziesiat linii trzeba bedzie rozkminiac, czym jest f;)
 
 		// Ensure that the window can be closed
 		// by pressing a little cross in the corner

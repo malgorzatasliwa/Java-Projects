@@ -9,10 +9,12 @@ import javax.swing.JLabel;
 
 public class FanFictionPrompter extends JFrame implements ActionListener {
 	
+	// nie uzywaj notacji wegierskiej w nazywaniu zmiennych. Po to mamy IDE, by zobaczyc jaki jest typ zmiennej. Nawet w C++ powinno sie tego zakazac ;)
 	private JButton bShowAnother;
 	private JLabel lPrompt0, lPrompt1, lPrompt2, lPrompt3, lPrompt4, lPrompt5;
 	private JLabel lShowPrompt1, lShowPrompt2, lShowPrompt3, lShowPrompt4, lShowPrompt5;
 	
+	// zmienne z malej litery. Zastanawiam sie, czy nazwa "Character" jest dobra i czy nie koliduje tutaj jakos myslowo z "char"
 	private String[] Character1 = {"Tyler", "Zane", "Nicholas", "Kelly"};
 	private String[] Character2 = {"Tyler", "Zane", "Nicholas", "Kelly"};
 	private String[] Rating = {"General", "Teen", "Mature"};
@@ -20,6 +22,8 @@ public class FanFictionPrompter extends JFrame implements ActionListener {
 	private String[] Prompt = {"Holidays","Pie","Baseball","Brawl" };
 	
 	
+	// za dlugi konstruktor. Metody powinny miec kilka, max kilkanascie linii. Puste linie idealnie tu wyznaczaja, gdzie moglaby sie zaczynac i konczyc metoda.
+	// Takze wyekstraktuj do prywatnych metod
 	public FanFictionPrompter() { 
 		
 		setSize(500,300);
@@ -62,6 +66,8 @@ public class FanFictionPrompter extends JFrame implements ActionListener {
 		lPrompt5.setForeground(Color.BLUE);
 		add(lPrompt5);
 		
+		// te wszystkie randomy w tej klasie mozna oprzec o jednej instancji Random. I po prostu na niej wywolywac new nextInt
+		// A moze w ogole warto zrobic osobna klase obslugujaca te tablice Stringow i majaca metody typu String randomLocation()?
 		lShowPrompt1 = new JLabel(Character1[new Random().nextInt(Character1.length)]);
 		lShowPrompt1.setBounds(200, 60, 100, 20);
 		add(lShowPrompt1); 
@@ -87,7 +93,7 @@ public class FanFictionPrompter extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		
+		// dobra praktyka jest oznaczac niemutowalne zmienne final. Czyli wstawiaj final tam, gdzie tylko sie da, np w ponizszej linijce.
 		FanFictionPrompter myWindow = new FanFictionPrompter(); 
 		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		myWindow.setVisible(true);
@@ -95,7 +101,7 @@ public class FanFictionPrompter extends JFrame implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) { 
-		
+		// tutaj nie ma problemu, bo tablice sa male, ale dla ciezszych operacji, moze warto to uruchomic w osobnym watku?
 		lShowPrompt1.setText(Character1[new Random().nextInt(Character1.length)]);
 		lShowPrompt2.setText(Character2[new Random().nextInt(Character2.length)]);
 		pickRight();
@@ -107,6 +113,8 @@ public class FanFictionPrompter extends JFrame implements ActionListener {
 	}
 
 	private void pickRight() { 
+		// Jesli porownujesz Stringi, to uzywaj equals(). == porownuje referencje.
+		// Tutaj == dziala, bo odwoluje sie do tej samej referencji, ale gdzie indziej juz to moze nie zadzialac ;)
 		while ((lShowPrompt1.getText()) == (lShowPrompt2.getText())) {
 			lShowPrompt2.setText(Character2[new Random().nextInt(Character2.length)]);
 		}
