@@ -4,6 +4,9 @@ package com.games.pingpong;
  * This interface contains all definitions of the final variables that are used
  * in the game
  */
+ 
+ // to jest antypattern. Teraz ktos moze byc w stanie utworzyc sobie obiekty GameConstants, a nie o to chodzi ;)
+ // zrob po prostu klase z prywatnym konstruktorem (by nie mozna bylo jej zainicjalizowac, a potem statycznie zaimportuj wymagane Stringi). voila!
 public interface GameConstants {
 	// Size of the ping pong table
 	public final int TABLE_WIDTH = 320; //blue field 
