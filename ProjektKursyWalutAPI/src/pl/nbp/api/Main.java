@@ -5,8 +5,8 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Podaj dane:\n- Waluta: USD, EUR, CHF, GBP");
-		System.out.println("- Daty poczatkow¹ i koñcow¹ w formacie yyyy-mm-dd");
-		System.out.println("Zakres dat nie mo¿e obejmowaæ przedzia³u d³u¿szego, ni¿ 93 dni.");
+		System.out.println("- Daty poczatkowa i koncowa w formacie yyyy-mm-dd");
+		System.out.println("Zakres dat nie moze obejmowac przedzialu dluzszego, niz 93 dni.");
 		
 		if (args.length >= 3) {
 			
@@ -18,7 +18,7 @@ public class Main {
 			
 						
 		} else {
-			System.out.println("Za ma³o danych.");
+			System.out.println("Za malo danych.");
 		
 		
 		}

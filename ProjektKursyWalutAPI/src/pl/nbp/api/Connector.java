@@ -68,7 +68,6 @@ public class Connector {
 			for (int i = 0; i < nodes.getLength(); i++) {
 				Node node = nodes.item(i);
 				Element element = (Element) node;
-				//NumberFormat numberFormat = NumberFormat.getInstance(Locale.GERMAN);
 				try {
 					currencyBuy.add(Double.parseDouble((element.getElementsByTagName("Bid").item(0).getTextContent())));
 				} catch (DOMException e) {
@@ -95,13 +94,13 @@ public class Connector {
 
 		private void getReadFromNBP() {
 			System.out.println(currency + " › kod waluty");
-			System.out.println(dateBegin + " › data pocz¹tkowa");
-			System.out.println(dateEnd + " › data koñcowa");
-			System.out.printf("%.4f › œredni kurs kupna\n", meanBuy());
+			System.out.println(dateBegin + " › data poczatkowa");
+			System.out.println(dateEnd + " › data koncowa");
+			System.out.printf("%.4f › sredni kurs kupna\n", meanBuy());
 			if(standDeviationSell() != 0.0) {
-				System.out.printf("%.4f › odchylenie standardowe kursów sprzeda¿y", standDeviationSell());
+				System.out.printf("%.4f › odchylenie standardowe kursow sprzedazy", standDeviationSell());
 			} else {
-				System.out.println("Zbyt ma³o danych › odchylenie standardowe kursów sprzeda¿y");
+				System.out.println("Zbyt malo danych › odchylenie standardowe kursow sprzedazy");
 			}
 		}
 		
