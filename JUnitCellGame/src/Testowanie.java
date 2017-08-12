@@ -104,7 +104,7 @@ public class Testowanie {
     public void testRessurection() {
  
         Board board = new Board(5, 5);
-        board.setCellValue(2, 2, false); //false!!!!!!!!!
+        board.setCellValue(2, 2, false); //false!!!!!!
         board.setCellValue(2, 1, true);
         board.setCellValue(2, 3, true);
         board.setCellValue(1, 2, true);
