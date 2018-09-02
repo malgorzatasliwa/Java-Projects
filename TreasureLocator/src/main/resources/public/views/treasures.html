@@ -1,0 +1,18 @@
+<div class="container pad-top">
+  <a ui-sref="newTreasure" class="btn-primary btn-lg nodecoration">Add New Treasure</a>
+  <table class="table treasuretable">
+      <tr>
+          <td><h3>All Treasures</h3></td>
+          <td></td>
+      </tr>
+      <tr ng-repeat="treasure in treasures">
+          <td>{{treasure.name}}</td>
+          <td>{{treasure.description}}</td>
+          <td>{{treasure.yearDiscovered}}</td>
+          <td>
+              <a class="btn btn-primary" ui-sref="viewTreasure({id:treasure.id})">View</a>
+              <a class="btn btn-danger"  ng-click="deleteTreasure(treasure)">Delete</a>
+          </td>
+      </tr>
+  </table>
+</div>

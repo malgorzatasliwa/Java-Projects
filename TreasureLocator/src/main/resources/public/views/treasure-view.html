@@ -1,0 +1,35 @@
+<div class="container pad-top">
+  <table class="table treasuretable">
+      <tr>
+          <td><h3>Details for {{treasure.name}}</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Name</td>
+          <td>{{treasure.name}}</td>
+      </tr>
+      <tr>
+          <td>Description</td>
+          <td>{{treasure.description}}</td>
+      </tr>
+      <tr>
+          <td>Treasure Condition</td>
+          <td>{{treasure.condition}}</td>
+      </tr>
+      <tr>
+          <td>Year Discovered</td>
+          <td>{{treasure.yearDiscovered}}</td>
+      </tr>
+      <tr>
+          <td>Depth of Treasure</td>
+          <td>{{treasure.depth}}</td>
+      </tr>
+      <tr>
+          <td>Location</td>
+          <td>{{treasure.latitude}}, {{treasure.longitude}}</td>
+      </tr>
+  </table>
+  <div>
+      <a class="btn btn-primary" ui-sref="editTreasure({id:treasure.id})">Edit</a>
+  </div>
+</div>
